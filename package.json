@@ -1,0 +1,18 @@
+{
+  "name": "tree-sitter-pug",
+  "version": "1.0.0",
+  "description": "Pug grammar for tree-sitter",
+  "license": "UNLICENSED",
+  "main": "bindings/node",
+  "dependencies": {
+    "nan": "^2.17.0"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.20.8"
+  },
+  "scripts": {
+    "generate": "tree-sitter generate",
+    "parse": "tree-sitter parse",
+    "test": "tree-sitter test"
+  }
+}
