@@ -1,0 +1,8 @@
+===================================
+Script
+===================================
+script(src='/javascripts/app.js')
+---
+
+(fragment
+  (script_tag))
