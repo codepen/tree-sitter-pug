@@ -1,9 +1,30 @@
 {
   "name": "pug",
   "rules": {
-    "source_file": {
-      "type": "STRING",
-      "value": "hello"
+    "fragment": {
+      "type": "REPEAT",
+      "content": {
+        "type": "SYMBOL",
+        "name": "_node"
+      }
+    },
+    "_node": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "script_tag"
+        }
+      ]
+    },
+    "script_tag": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_script_tag_name"
+        }
+      ]
     }
   },
   "extras": [
@@ -14,7 +35,20 @@
   ],
   "conflicts": [],
   "precedences": [],
-  "externals": [],
+  "externals": [
+    {
+      "type": "SYMBOL",
+      "name": "_tag_name"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_script_tag_name"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_implicit_end_tag"
+    }
+  ],
   "inline": [],
   "supertypes": []
 }

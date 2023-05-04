@@ -1,11 +1,22 @@
 [
   {
-    "type": "source_file",
+    "type": "fragment",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "script_tag",
+          "named": true
+        }
+      ]
+    }
   },
   {
-    "type": "hello",
-    "named": false
+    "type": "script_tag",
+    "named": true,
+    "fields": {}
   }
 ]
