@@ -2,7 +2,66 @@
 Script
 ===================================
 script(src='/javascripts/app.js')
+script(src='https://code.jquery.com/jquery-3.4.1.slim.min.js')
 ---
 
 (fragment
   (script_tag))
+
+===================================
+Includes
+===================================
+doctype html
+html
+  include includes/head.pug
+  body
+    h1 My Site
+    p Welcome to my super lame site.
+    include includes/foot.pug
+---
+(fragment
+  (include_statement
+    (include_path)))
+
+===================================
+Extends
+===================================
+//- page-a.pug
+extends layout.pug
+---
+(fragment
+  (extends_statement
+    (extends_path)))
+
+===================================
+Block in a Tag - script
+===================================
+script.
+  if (usingPug)
+    console.log('you are awesome')
+  else
+    console.log('use pug')
+---
+(fragment
+  (script_tag
+    (raw_text)))
+
+===================================
+Block in a Tag - style
+===================================
+style(media='screen', lang='scss').
+  body {
+    background-color: {{themeColor}};
+  }
+---
+
+
+===================================
+Link Tag
+===================================
+doctype html
+html
+  head
+    title LogRocket Pug Example
+    link(rel='stylesheet' href='https://getbootstrap.com/docs/4.4/dist/css/bootstrap.min.css')
+---
