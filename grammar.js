@@ -1,13 +1,51 @@
 module.exports = grammar({
   name: "pug",
 
-  externals: ($) => [$._tag_name, $._script_tag_name, $._implicit_end_tag],
-
   rules: {
-    fragment: ($) => repeat($._node),
+    source_file: ($) =>
+      repeat(
+        choice(
+          $.extends_statement,
+          $.include_statement,
+          $.link_tag,
+          $.script_tag,
+          $.style_tag,
+          $.tbd
+        )
+      ),
 
-    _node: ($) => choice($.script_tag),
+    extends_statement: ($) => seq("extends", " ", $.path),
 
-    script_tag: ($) => seq($._script_tag_name),
+    include_statement: ($) => seq("include", " ", $.path),
+
+    link_tag: ($) => seq("link", optional($._attributes)),
+
+    script_tag: ($) => seq("script", optional($._attributes)),
+
+    style_tag: ($) => seq("style", optional($._attributes)),
+
+    path: ($) => seq(repeat1(choice(/\w/, "/")), ".", repeat1(/\w/)),
+
+    _attributes: ($) =>
+      seq("(", repeat(seq($.attribute, optional(choice(",", " ")))), ")"),
+
+    attribute: ($) =>
+      seq(
+        $.attribute_name,
+        optional(seq("=", choice($.attribute_value, $.quoted_attribute_value)))
+      ),
+
+    attribute_name: ($) => /[^<>"'/=\s]+/,
+
+    attribute_value: ($) => /[^<>"'=\s]+/,
+
+    quoted_attribute_value: ($) =>
+      choice(
+        seq("'", optional(alias(/[^']+/, $.attribute_value)), "'"),
+        seq('"', optional(alias(/[^"]+/, $.attribute_value)), '"')
+      ),
+
+    // Catch-all rule for constructs we don't care about
+    tbd: ($) => prec(-1, repeat1(/./)),
   },
 });

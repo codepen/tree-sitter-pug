@@ -12,6 +12,7 @@
   },
   "scripts": {
     "generate": "tree-sitter generate",
+    "gt": "tree-sitter generate && tree-sitter test",
     "parse": "tree-sitter parse",
     "test": "tree-sitter test"
   }
