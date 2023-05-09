@@ -6,7 +6,16 @@ script(src='https://code.jquery.com/jquery-3.4.1.slim.min.js')
 ---
 
 (fragment
-  (script_tag))
+  (script_tag
+    (attribute
+      (attribute_name)
+      (quoted_attribute_value
+        (attribute_value))))
+  (script_tag
+    (attribute
+      (attribute_name)
+      (quoted_attribute_value
+        (attribute_value)))))
 
 ===================================
 Includes
@@ -20,6 +29,8 @@ html
     include includes/foot.pug
 ---
 (fragment
+  (include_statement
+    (include_path))
   (include_statement
     (include_path)))
 
@@ -54,7 +65,17 @@ style(media='screen', lang='scss').
     background-color: {{themeColor}};
   }
 ---
-
+(fragment
+  (style_tag
+    (attribute
+      (attribute_name)
+      (quoted_attribute_value
+        (attribute_value)))
+    (attribute
+      (attribute_name)
+      (quoted_attribute_value
+        (attribute_value)))
+    (raw_text)))
 
 ===================================
 Link Tag
@@ -65,3 +86,13 @@ html
     title LogRocket Pug Example
     link(rel='stylesheet' href='https://getbootstrap.com/docs/4.4/dist/css/bootstrap.min.css')
 ---
+(fragment
+  (link_tag
+    (attribute
+      (attribute_name)
+      (quoted_attribute_value
+        (attribute_value)))
+    (attribute
+      (attribute_name)
+      (quoted_attribute_value
+        (attribute_value)))))
