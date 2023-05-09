@@ -7,9 +7,9 @@
         "src"
       ],
       "sources": [
-        "src/parser.c",
-        "src/scanner.cc",
         "bindings/node/binding.cc",
+        "src/parser.c",
+        # If your language uses an external scanner, add it here.
       ],
       "cflags_c": [
         "-std=c99",
