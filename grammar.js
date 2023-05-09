@@ -2,9 +2,7 @@ module.exports = grammar({
   name: "pug",
 
   rules: {
-    fragment: ($) => repeat(choice($.tag, $.script_tag, $.include_statement)),
-
-    tag: ($) => seq($.tag_name, optional($.attributes)),
+    fragment: ($) => repeat(choice($.script_tag, $.include_statement, $.tbd)),
 
     script_tag: ($) => seq("script", optional($.attributes)),
 
@@ -31,5 +29,8 @@ module.exports = grammar({
       ),
 
     path: ($) => seq(repeat1(choice(/\w/, "/")), ".", repeat1(/\w/)),
+
+    // Catch-all rule for constructs we don't care about
+    tbd: ($) => prec(-1, repeat1(/./)),
   },
 });

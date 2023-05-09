@@ -8,39 +8,18 @@
         "members": [
           {
             "type": "SYMBOL",
-            "name": "tag"
-          },
-          {
-            "type": "SYMBOL",
             "name": "script_tag"
           },
           {
             "type": "SYMBOL",
             "name": "include_statement"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "tbd"
           }
         ]
       }
-    },
-    "tag": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "tag_name"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "attributes"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        }
-      ]
     },
     "script_tag": {
       "type": "SEQ",
@@ -264,6 +243,17 @@
           }
         }
       ]
+    },
+    "tbd": {
+      "type": "PREC",
+      "value": -1,
+      "content": {
+        "type": "REPEAT1",
+        "content": {
+          "type": "PATTERN",
+          "value": "."
+        }
+      }
     }
   },
   "extras": [

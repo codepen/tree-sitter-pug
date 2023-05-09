@@ -50,7 +50,7 @@
           "named": true
         },
         {
-          "type": "tag",
+          "type": "tbd",
           "named": true
         }
       ]
@@ -107,23 +107,9 @@
     }
   },
   {
-    "type": "tag",
+    "type": "tbd",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "attributes",
-          "named": true
-        },
-        {
-          "type": "tag_name",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": " ",
@@ -176,9 +162,5 @@
   {
     "type": "script",
     "named": false
-  },
-  {
-    "type": "tag_name",
-    "named": true
   }
 ]
