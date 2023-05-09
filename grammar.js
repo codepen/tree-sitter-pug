@@ -2,33 +2,48 @@ module.exports = grammar({
   name: "pug",
 
   rules: {
-    fragment: ($) => repeat(choice($.script_tag, $.include_statement, $.tbd)),
+    source_file: ($) =>
+      repeat(
+        choice(
+          $.extends_statement,
+          $.include_statement,
+          $.link_tag,
+          $.script_tag,
+          $.style_tag,
+          $.tbd
+        )
+      ),
 
-    script_tag: ($) => seq("script", optional($.attributes)),
+    extends_statement: ($) => seq("extends", " ", $.path),
 
     include_statement: ($) => seq("include", " ", $.path),
 
-    attributes: ($) =>
-      seq(
-        "(",
-        repeat(seq($.attribute, choice(",", " "))),
-        optional($.attribute),
-        ")"
-      ),
+    link_tag: ($) => seq("link", optional($._attributes)),
+
+    script_tag: ($) => seq("script", optional($._attributes)),
+
+    style_tag: ($) => seq("style", optional($._attributes)),
+
+    path: ($) => seq(repeat1(choice(/\w/, "/")), ".", repeat1(/\w/)),
+
+    _attributes: ($) =>
+      seq("(", repeat(seq($.attribute, optional(choice(",", " ")))), ")"),
+
     attribute: ($) =>
-      seq($.attribute_name, optional(seq("=", $.quoted_attribute_value))),
+      seq(
+        $.attribute_name,
+        optional(seq("=", choice($.attribute_value, $.quoted_attribute_value)))
+      ),
 
-    tag_name: ($) => /\w(?:[-:\w]*\w)?/,
+    attribute_name: ($) => /[^<>"'/=\s]+/,
 
-    attribute_name: ($) => /[\w@\-:]+/,
+    attribute_value: ($) => /[^<>"'=\s]+/,
 
     quoted_attribute_value: ($) =>
       choice(
         seq("'", optional(alias(/[^']+/, $.attribute_value)), "'"),
         seq('"', optional(alias(/[^"]+/, $.attribute_value)), '"')
       ),
-
-    path: ($) => seq(repeat1(choice(/\w/, "/")), ".", repeat1(/\w/)),
 
     // Catch-all rule for constructs we don't care about
     tbd: ($) => prec(-1, repeat1(/./)),

@@ -12,6 +12,10 @@
           "named": true
         },
         {
+          "type": "attribute_value",
+          "named": true
+        },
+        {
           "type": "quoted_attribute_value",
           "named": true
         }
@@ -19,38 +23,15 @@
     }
   },
   {
-    "type": "attributes",
+    "type": "extends_statement",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
-      "required": false,
+      "multiple": false,
+      "required": true,
       "types": [
         {
-          "type": "attribute",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "fragment",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "include_statement",
-          "named": true
-        },
-        {
-          "type": "script_tag",
-          "named": true
-        },
-        {
-          "type": "tbd",
+          "type": "path",
           "named": true
         }
       ]
@@ -66,6 +47,21 @@
       "types": [
         {
           "type": "path",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "link_tag",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "attribute",
           "named": true
         }
       ]
@@ -96,11 +92,61 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
         {
-          "type": "attributes",
+          "type": "attribute",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "extends_statement",
+          "named": true
+        },
+        {
+          "type": "include_statement",
+          "named": true
+        },
+        {
+          "type": "link_tag",
+          "named": true
+        },
+        {
+          "type": "script_tag",
+          "named": true
+        },
+        {
+          "type": "style_tag",
+          "named": true
+        },
+        {
+          "type": "tbd",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "style_tag",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "attribute",
           "named": true
         }
       ]
@@ -156,11 +202,23 @@
     "named": true
   },
   {
+    "type": "extends",
+    "named": false
+  },
+  {
     "type": "include",
     "named": false
   },
   {
+    "type": "link",
+    "named": false
+  },
+  {
     "type": "script",
+    "named": false
+  },
+  {
+    "type": "style",
     "named": false
   }
 ]
