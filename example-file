@@ -1,5 +1,6 @@
 doctype html
 html
+  script(src='/javascripts/app.js')
   include includes/head.pug
   body
     h1 My Site
