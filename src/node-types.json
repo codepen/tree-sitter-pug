@@ -148,6 +148,10 @@
         {
           "type": "attribute",
           "named": true
+        },
+        {
+          "type": "raw_text",
+          "named": true
         }
       ]
     }
@@ -212,6 +216,10 @@
   {
     "type": "link",
     "named": false
+  },
+  {
+    "type": "raw_text",
+    "named": true
   },
   {
     "type": "script",
