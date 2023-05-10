@@ -1,6 +1,8 @@
 module.exports = grammar({
   name: "pug",
 
+  externals: ($) => [$._newline, $._indent, $._dedent],
+
   rules: {
     source_file: ($) =>
       repeat(
@@ -20,11 +22,15 @@ module.exports = grammar({
 
     link_tag: ($) => seq("link", optional($._attributes)),
 
-    script_tag: ($) => seq("script", optional($._attributes)),
+    script_tag: ($) =>
+      seq("script", optional($._attributes), optional(seq(".", $._newline))),
 
-    style_tag: ($) => seq("style", optional($._attributes)),
+    style_tag: ($) =>
+      seq("style", optional($._attributes), optional(seq(".", $._newline))),
 
     path: ($) => seq(repeat1(choice(/\w/, "/")), ".", repeat1(/\w/)),
+
+    raw_text: ($) => choice(seq($._indent, /\w/, $._dedent)),
 
     _attributes: ($) =>
       seq("(", repeat(seq($.attribute, optional(choice(",", " ")))), ")"),
