@@ -1,45 +1,55 @@
-===================================
-Extends
-===================================
-//- page-a.pug
-extends layout.pug
+========================
+Multiline with dot
+=========================
+
+div.
+  Content here
+  more
+  content here,
+
 ---
+
 (source_file
-  (tbd)
-  (extends_statement
-    (path)))
+  (tag
+    (tag_name)
+    (children
+      (content)
+      (content)
+      (content)
+    )
+))
 
 ===================================
-Includes
+Script Tag - raw_text
 ===================================
-doctype html
-html
-  include includes/head.pug
-  body
-    h1 My Site
-    p Welcome to my super lame site.
-    include includes/foot.pug
+
+script.
+  if (usingPug)
+    console.log('you are awesome')
+  else
+    console.log('use pug')
+
 ---
 (source_file
-  (tbd)
-  (include_statement
-    (path))
-  (tbd)
-  (include_statement
-    (path)))
+  (script_tag
+    (children
+      (content)
+      (content)
+      (content)
+      (content))))
 
 ===================================
-Link Tag
+Style Tag - raw_text
 ===================================
-doctype html
-html
-  head
-    title LogRocket Pug Example
-    link(rel='stylesheet' href='https://getbootstrap.com/docs/4.4/dist/css/bootstrap.min.css')
+
+style(media='screen', lang='scss').
+  body {
+    background-color: {{themeColor}};
+  }
+
 ---
 (source_file
-  (tbd)
-  (link_tag
+  (style_tag
     (attribute
       (attribute_name)
       (quoted_attribute_value
@@ -47,47 +57,27 @@ html
     (attribute
       (attribute_name)
       (quoted_attribute_value
-        (attribute_value)))))
-
-===================================
-Script Tag
-===================================
-script(src='/javascripts/app.js')
-script(src='https://code.jquery.com/jquery-3.4.1.slim.min.js')
----
-
-(source_file
-  (script_tag
-    (attribute
-      (attribute_name)
-      (quoted_attribute_value
-        (attribute_value))))
-  (script_tag
-    (attribute
-      (attribute_name)
-      (quoted_attribute_value
-        (attribute_value)))))
-
-===================================
-Script Tag - raw_text
-===================================
-script.
-  if (usingPug)
-    console.log('you are awesome')
-  else
-    console.log('use pug')
----
-(source_file
-  (script_tag
+        (attribute_value)))
     (raw_text)))
 
 ===================================
-Style Tag - raw_text
+Style Tag - html_input
 ===================================
-style(media='screen', lang='scss').
-  body {
-    background-color: {{themeColor}};
-  }
+html
+  head
+    title LogRocket Pug Example
+    style.
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+  body
+    include includes/header.pug
 ---
 (source_file
   (style_tag
