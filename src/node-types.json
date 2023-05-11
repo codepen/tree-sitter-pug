@@ -250,14 +250,6 @@
           "named": true
         },
         {
-          "type": "script_tag",
-          "named": true
-        },
-        {
-          "type": "style_tag",
-          "named": true
-        },
-        {
           "type": "tag",
           "named": true
         },

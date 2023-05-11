@@ -76,6 +76,8 @@ html
         user-select: none;
       }
 
+  body
+    include includes/header.pug
 ---
 (source_file
   (style_tag

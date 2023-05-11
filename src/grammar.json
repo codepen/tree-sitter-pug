@@ -246,21 +246,8 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "STRING",
-                "value": "style"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "id"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "class"
-              }
-            ]
+            "type": "STRING",
+            "value": "style"
           },
           {
             "type": "CHOICE",
@@ -424,14 +411,6 @@
         {
           "type": "CHOICE",
           "members": [
-            {
-              "type": "SYMBOL",
-              "name": "style_tag"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "script_tag"
-            },
             {
               "type": "SEQ",
               "members": [
