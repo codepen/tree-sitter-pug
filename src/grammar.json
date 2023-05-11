@@ -162,6 +162,10 @@
                 {
                   "type": "SYMBOL",
                   "name": "_newline"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "raw_text"
                 }
               ]
             },
@@ -201,28 +205,6 @@
             "type": "PATTERN",
             "value": "\\w"
           }
-        }
-      ]
-    },
-    "raw_text": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "_indent"
-            },
-            {
-              "type": "PATTERN",
-              "value": "\\w"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "_dedent"
-            }
-          ]
         }
       ]
     },
@@ -416,6 +398,22 @@
     {
       "type": "SYMBOL",
       "name": "_dedent"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_tag_name"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_script_tag_name"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_style_tag_name"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "raw_text"
     }
   ],
   "inline": [],

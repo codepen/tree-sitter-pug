@@ -1,14 +1,21 @@
 #include <tree_sitter/parser.h>
 #include <vector>
+#include <string>
+#include "tag.h"
 
 namespace {
 
 using std::vector;
+using std::string;
 
 enum TokenType {
   NEWLINE,
   INDENT,
-  DEDENT
+  DEDENT,
+  TAG_NAME,
+  SCRIPT_TAG_NAME,
+  STYLE_TAG_NAME,
+  RAW_TEXT
 };
 
 struct Scanner {
@@ -82,10 +89,41 @@ struct Scanner {
       }
     }
 
+    if (valid_symbols[TAG_NAME] && !valid_symbols[RAW_TEXT]) {
+      // return scan_tag_name(lexer);
+      string tag_name;
+      while (iswalnum(lexer->lookahead)) {
+        tag_name += towupper(lexer->lookahead);
+        advance(lexer);
+      }
+      if (tag_name.empty()) return false;
+      Tag tag = Tag::for_name(tag_name);
+      tags.push_back(tag);
+      switch (tag.type) {
+        case SCRIPT:
+          lexer->result_symbol = SCRIPT_TAG_NAME;
+          break;
+        case STYLE:
+          lexer->result_symbol = STYLE_TAG_NAME;
+          break;
+        default:
+          lexer->result_symbol = TAG_NAME;
+          break;
+      }
+      return true;
+    }
+
+    if (valid_symbols[RAW_TEXT] && !valid_symbols[TAG_NAME]) {
+      if (!tags.size()) return false;
+      lexer->result_symbol = RAW_TEXT;
+      return true;
+    }
+
     return false;
   }
 
   vector<uint16_t> indent_length_stack;
+  vector<Tag> tags;
 };
 
 }

@@ -1,7 +1,15 @@
 module.exports = grammar({
   name: "pug",
 
-  externals: ($) => [$._newline, $._indent, $._dedent],
+  externals: ($) => [
+    $._newline,
+    $._indent,
+    $._dedent,
+    $._tag_name,
+    $._script_tag_name,
+    $._style_tag_name,
+    $.raw_text,
+  ],
 
   rules: {
     source_file: ($) =>
@@ -25,12 +33,21 @@ module.exports = grammar({
     script_tag: ($) =>
       seq("script", optional($._attributes), optional(seq(".", $._newline))),
 
+    // No ERROR nodes, without external token raw_text
+    // style_tag: ($) => seq("style", optional($._attributes)),
+
+    // Produces many ERROR nodes
     style_tag: ($) =>
-      seq("style", optional($._attributes), optional(seq(".", $._newline))),
+      seq(
+        "style",
+        optional($._attributes),
+        optional(seq(".", $._newline, $.raw_text))
+      ),
 
     path: ($) => seq(repeat1(choice(/\w/, "/")), ".", repeat1(/\w/)),
 
-    raw_text: ($) => choice(seq($._indent, /\w/, $._dedent)),
+    // Alternative to external token raw_text
+    // raw_text: ($) => choice(seq($._indent, /\w/, $._dedent)),
 
     _attributes: ($) =>
       seq("(", repeat(seq($.attribute, optional(choice(",", " ")))), ")"),

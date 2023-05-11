@@ -11,6 +11,7 @@
     "tree-sitter-cli": "^0.20.8"
   },
   "scripts": {
+    "example": "tree-sitter parse example-file.pug",
     "generate": "tree-sitter generate",
     "gt": "tree-sitter generate && tree-sitter test",
     "parse": "tree-sitter parse",
