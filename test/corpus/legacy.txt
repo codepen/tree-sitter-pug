@@ -1,0 +1,136 @@
+===================================
+Extends
+===================================
+//- page-a.pug
+extends layout.pug
+---
+(source_file
+  (comment)
+  (extends
+    (keyword)
+    (filename)))
+
+===================================
+Includes
+===================================
+doctype html
+html
+  include includes/head.pug
+  body
+    h1 My Site
+    p Welcome to my super lame site.
+    include includes/foot.pug
+---
+(source_file
+  (doctype
+    (doctype_name))
+  (tag
+    (tag_name)
+    (children
+      (include
+        (keyword)
+        (filename))
+      (tag
+        (tag_name)
+        (children
+          (tag
+            (tag_name)
+            (content))
+          (tag
+            (tag_name)
+            (content))
+          (include
+            (keyword)
+            (filename)))))))
+
+===================================
+Link Tag
+===================================
+doctype html
+html
+  head
+    title LogRocket Pug Example
+    link(rel='stylesheet' href='https://getbootstrap.com/docs/4.4/dist/css/bootstrap.min.css')
+---
+(source_file
+  (doctype
+    (doctype_name))
+  (tag
+    (tag_name)
+    (children
+      (tag
+        (tag_name)
+        (children
+          (tag
+            (tag_name)
+            (content))
+          (link_tag
+            (attributes
+              (attribute
+                (attribute_name)
+                (quoted_attribute_value
+                  (attribute_value)))
+              (attribute
+                (attribute_name)
+                (quoted_attribute_value
+                  (attribute_value))))))))))
+
+===================================
+Script Tag
+===================================
+script(src='/javascripts/app.js')
+script(src='https://code.jquery.com/jquery-3.4.1.slim.min.js')
+---
+
+(source_file
+  (script_tag
+    (attributes
+      (attribute
+        (attribute_name)
+        (quoted_attribute_value
+          (attribute_value)))))
+  (script_tag
+    (attributes
+      (attribute
+        (attribute_name)
+        (quoted_attribute_value
+          (attribute_value))))))
+
+===================================
+Script Tag - With Content Code
+===================================
+
+script.
+  if (usingPug)
+    console.log('you are awesome')
+
+  else
+    console.log('use pug')
+---
+
+(source_file
+  (script_tag
+    (content_code
+      (MISSING _newline))))
+
+===================================
+Style Tag - With Content Code and No New Line
+===================================
+
+style(media='screen', lang='scss').
+  body {
+    background-color: {{themeColor}};
+  }
+---
+(source_file
+  (style_tag
+    (attributes
+      (attribute
+        (attribute_name)
+        (quoted_attribute_value
+          (attribute_value)))
+      (attribute
+        (attribute_name)
+        (quoted_attribute_value
+          (attribute_value)))))
+  (ERROR))
