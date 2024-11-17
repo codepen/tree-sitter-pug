@@ -126,6 +126,7 @@ module.exports = grammar({
       seq(
         alias("include", $.keyword),
         optional($.filter),
+        /\s*/,
         alias(/[^\n]+/, $.filename)
       ),
 
@@ -216,7 +217,7 @@ module.exports = grammar({
         $._block_content
       ),
     extends: ($) =>
-      seq(alias("extends", $.keyword), alias(/[^\n]+/, $.filename)),
+      seq(alias("extends", $.keyword), /\s*/, alias(/[^\n]+/, $.filename)),
 
     filter: ($) =>
       prec.right(

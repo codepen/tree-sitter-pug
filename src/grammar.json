@@ -630,6 +630,10 @@
           ]
         },
         {
+          "type": "PATTERN",
+          "value": "\\s*"
+        },
+        {
           "type": "ALIAS",
           "content": {
             "type": "PATTERN",
@@ -1124,6 +1128,10 @@
           },
           "named": true,
           "value": "keyword"
+        },
+        {
+          "type": "PATTERN",
+          "value": "\\s*"
         },
         {
           "type": "ALIAS",
